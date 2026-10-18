@@ -50,4 +50,7 @@ It starts as simple phone alerts in subgoal 1 and grows into a full dashboard (G
 ## Repository
 
 - `docs/design.md` — design doc: hardware, power, radio configuration, packet format and API
+- `docs/shopping-list.md` — parts for Phase 1 (gate alert)
+- `firmware/` — MicroPython for the Pico W tower hub and the gate node; see [firmware/README.md](firmware/README.md)
+- `tests/` — PC-side tests for the packet format
 - `nodes.example.csv` — template for node coordinates. Copy it to `nodes.local.csv` (git-ignored) for real locations.

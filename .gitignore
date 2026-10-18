@@ -4,3 +4,7 @@ nodes.local.csv
 
 # Windows download metadata
 *:Zone.Identifier
+
+# Firmware credentials
+secrets.py
+__pycache__/
