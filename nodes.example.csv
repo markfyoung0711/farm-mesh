@@ -1,0 +1,3 @@
+node_id,role,lat,lon,capability
+TOWER,hub,30.000000000,-95.000000000,
+GATE-01,sensor,30.001350000,-95.001510000,gate_switch

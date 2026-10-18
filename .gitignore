@@ -1,0 +1,6 @@
+# Real node coordinates — never commit
+nodes.local.csv
+*.local.*
+
+# Windows download metadata
+*:Zone.Identifier
