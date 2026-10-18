@@ -2,6 +2,8 @@
 
 Oct 18, 2026 · @Mark
 
+For the project goal and subgoals, see the [README](../README.md).
+
 ## Goals and scope
 
 The system reports where movement happens across about 50 acres of woods, using cheap solar LoRa sensor nodes that talk to one hub on the tower.
