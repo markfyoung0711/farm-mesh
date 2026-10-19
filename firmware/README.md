@@ -1,10 +1,14 @@
 # Phase 1 firmware (MicroPython)
 
-Two boards, one LoRa link:
+Three boards, one LoRa link: two Picos with Waveshare radios, and a Heltec V3 handheld.
 
 - `hub/` — Pico W at the top of the tower. It receives packets, ACKs them, drops duplicates, logs them to `events.log`, pushes alerts over the house WiFi, and alerts when a node goes silent.
 - `gate/` — Pico at GATE-01. Sensors: an AM312 PIR, a QMC5883L magnetometer and an optional reed switch. WiFi stays off.
-- `lib/` — shared files: the 8-byte packet format, SX1262 radio setup and the magnetometer driver.
+- `tester/` — TEST-01 handheld tester for the Heltec WiFi LoRa 32 V3 (it also runs on a Pico + Waveshare). Short-press PRG fakes a motion event, a long press fakes a vehicle, and the OLED shows every packet it hears, including the hub's ACKs. Copy `lib/*.py` and `tester/main.py`, then `mip install ssd1306`.
+- `lib/` — shared files: per-board pins (`board.py`), the 8-byte packet format, SX1262 radio setup, the OLED console and the magnetometer driver.
+- `tools/` — bring-up tests: `radio_test.py` (ping/pong range test with RSSI and SNR) and `sensor_test.py` (live PIR, magnetometer, reed and battery readings).
+
+Per-component pins, tests and status are tracked in [docs/components.md](../docs/components.md).
 
 ## Wiring (gate)
 
@@ -15,7 +19,7 @@ Two boards, one LoRa link:
 | QMC5883L SDA / SCL | GP4 / GP5 (VCC 3V3, GND) |
 | Reed switch (optional) | GP17 to GND, then set `REED_PIN = 17` |
 
-For a bare SPI module such as the E22-900M22S, edit `PINS` in `lib/radio.py`.
+Pins for each board type live in `lib/board.py`. For a bare SPI module such as the E22-900M22S, edit the rp2 profile there.
 
 ## Flash
 
