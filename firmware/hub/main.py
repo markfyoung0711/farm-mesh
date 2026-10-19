@@ -2,17 +2,31 @@
 # Logic follows docs/design.md, "Phase 1".
 
 import os
+import sys
 import time
 
 import network
 import ntptime
 import requests
-from machine import WDT
+import rp2
+from machine import WDT, Pin
 
 import config as cfg
 import packet
 import secrets
 from radio import make_modem
+
+# Escape hatch: a running watchdog can't be stopped, so Ctrl-C alone just leads to a reset.
+# Press and hold BOOTSEL while the LED is lit (first 3 s after power-up) to drop to the REPL instead.
+led = Pin("LED", Pin.OUT)
+led.on()
+for _ in range(30):
+    if rp2.bootsel_button():
+        led.off()
+        print("BOOTSEL held: hub not started")
+        sys.exit()
+    time.sleep_ms(100)
+led.off()
 
 wdt = WDT(timeout=cfg.WATCHDOG_MS) if cfg.WATCHDOG_MS else None
 
@@ -154,6 +168,8 @@ def check_silent_nodes():
     limit = cfg.HEARTBEAT_MS * cfg.MISSED_HEARTBEATS
     now = time.ticks_ms()
     for node_id, name in cfg.NODES.items():
+        if node_id in cfg.QUIET_NODES:
+            continue
         t = last_heard.setdefault(node_id, now)  # start the clock at hub boot
         if node_id not in fault_sent and time.ticks_diff(now, t) > limit:
             fault_sent.add(node_id)

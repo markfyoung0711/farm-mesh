@@ -3,7 +3,9 @@
 # node_id byte value -> name, matching NODE_ID in each node's config.py and nodes.local.csv
 NODES = {
     1: "GATE-01",
+    99: "TEST-01",  # bench tester (firmware/tester)
 }
+QUIET_NODES = {99}  # no "silent" alerts for these; the tester is off most of the time
 
 # Alert service: "ntfy" or "pushover"
 ALERT = "ntfy"

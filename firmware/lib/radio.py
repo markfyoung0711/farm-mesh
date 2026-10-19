@@ -4,17 +4,10 @@
 from machine import SPI, Pin
 from lora import SX1262
 
-# Waveshare Pico-LoRa-SX1262 HAT pinout. Change these for a bare SPI module (e.g. E22-900M22S).
-PINS = {
-    "spi_id": 1,
-    "sck": 10,
-    "mosi": 11,
-    "miso": 12,
-    "cs": 3,
-    "busy": 2,
-    "dio1": 20,
-    "reset": 15,
-}
+import board
+
+# Pins come from board.py (Waveshare on a Pico, or the Heltec V3).
+PINS = board.LORA
 
 # Both ends must match. US 915 MHz band; SF7/125 kHz is plenty for 207 m.
 LORA_CFG = {
@@ -27,7 +20,7 @@ LORA_CFG = {
     "crc_en": True,
 }
 
-# Set to the module's TCXO voltage if it has one (many SX1262 modules use 1800 mV).
+# TCXO voltage. 1800 mV for both the Waveshare board and the Heltec V3.
 # If init fails with an oscillator/timeout error, this is the first thing to check.
 TCXO_MV = 1800
 
