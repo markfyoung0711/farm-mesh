@@ -92,7 +92,7 @@ The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remo
 | Wire winder (3-pt) + spare reels | 1: wind up ~5.5 mi of old barbed wire | PTO | ✅ | Must have a **slip clutch**; borrow or buy ~20 reels |
 | Heavy log chains with grab hooks | 1: pull old posts; 2: drag logs inside the line | Hitch lift / drawbar | ✅ | **Owned** |
 | Post puller, jaw type (3-pt) | 1: pull old posts faster | Hitch lift | ✅ | Optional; chain works |
-| Rotary cutter (brush hog) | 2: mow the 10-ft corridor | PTO | ✅ | Check the width suits your hp |
+| Rotary cutter (brush hog) | 2: mow the 10-ft corridor | PTO | ✅ | **Owned** |
 | Chainsaw | 2: fell trees inward, buck logs, cut stumps flush | — | ✅ | **Owned** |
 | Box blade or rear blade | 2: grade the corridor to bare dirt, fill dips | Hitch lift | ✅ | |
 | Forestry mulcher or skid steer with grapple | 2: heavy brush | Own hydraulics | ⚠️ | Rent or borrow with an operator if the brush is too heavy for the cutter |
