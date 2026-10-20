@@ -24,8 +24,14 @@ A simple flatbed on a running gear for fence work: hauling old posts, scrap wire
 - **Cross brace:** two diagonal braces from the tongue end back to the rails so the frame doesn't rack.
 
 ## Running gear
-- **Easiest:** a used four-wheel wagon gear rated 5,000+ lb, with the frame bolted or welded to the bolsters. Check the kingpin, bearings, and tongue for wear.
-- **Alternative:** a tandem axle set (2 x 3,500 lb with leaf springs) and a fixed drawbar, with the axles centered or slightly behind the middle so there's about 10 to 15% tongue weight.
+**Decision: buy a used ag running gear and rebuild it.** Building one was considered ([chassis build plan](wagon-chassis-build-plan.html), [build notes](wagon-running-gear-build-notes.md)) and set aside as too much work.
+
+- **Models:** John Deere 953, 963, 1065; IH / McCormick-Deering; Kory, H&S, Pequea, Electric Wheel. Retired 1,000-gal NH3 nurse-tank gears are also a good fit (cut off the tank cradles).
+- **Size:** 6–8 ton, automotive steering, adjustable reach pole, 6-bolt hubs common.
+- **Price targets:** $150–600 at online auction (AuctionTime, BigIron sold results) for one that needs work; dealer asking prices of $650–3,500 are mostly markup. Budget $300–800 for rebuild parts.
+- **Walk away if:** the axle beam or reach pole is bent, welds are cracked, or the steering spindles are seized.
+- **Rebuild:** wheel bearings, races and seals; kingpin bushings; tie-rod ends; tires rated ~1,750 lb+ each.
+- **Axles:** 2 × 3,500 lb minimum. No brakes needed on-farm; keep the loaded wagon lighter than the tractor.
 
 ## Deck
 - 2x8 oak or treated boards, 6.5 ft long, laid crosswise on the cross members with a 1/4" gap. That's about 20 boards. Bolt with 3/8" carriage bolts or lag screws, or use self-tapping deck screws on steel.

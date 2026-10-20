@@ -1,0 +1,271 @@
+<title>Fence Wagon Build Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single readable column, shop-drawing feel: spec strip, drawings, cut lists, shopping list, build order */
+:root {
+  --bg: #f4f5f3;
+  --surface: #ffffff;
+  --fg: #1f2421;
+  --muted: #5b625d;
+  --rule: #d5d9d4;
+  --accent: #a3401f;        /* red-oxide primer */
+  --accent-soft: #f3e3dc;
+  --steel: #4d5b63;
+  --ok: #2f6b3a;
+  --warn: #8a5a00;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151917; --surface: #1d2220; --fg: #e6e9e6; --muted: #a0a8a3; --rule: #333a36;
+    --accent: #e0835f; --accent-soft: #3a2620; --steel: #9fb0ba; --ok: #7fc28a; --warn: #e0b45c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151917; --surface: #1d2220; --fg: #e6e9e6; --muted: #a0a8a3; --rule: #333a36;
+  --accent: #e0835f; --accent-soft: #3a2620; --steel: #9fb0ba; --ok: #7fc28a; --warn: #e0b45c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 15px/1.6 var(--font-body);
+  padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.1; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: .01em; }
+h2 { font-size: 1.7rem; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+h3 { font-size: 1.25rem; color: var(--steel); }
+p { margin: 0; max-width: 68ch; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font: 500 .78rem/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.lede { color: var(--muted); font-size: 1.05rem; }
+.note { color: var(--muted); font-size: .9rem; }
+header { display: flex; flex-direction: column; gap: 10px; }
+.spec { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.spec div { background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.spec b { font: 500 1.15rem/1.2 var(--font-mono); font-variant-numeric: tabular-nums; }
+.spec span { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 600 .74rem/1.3 var(--font-body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+td.num, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+td.num { white-space: nowrap; }
+tr.group td { background: var(--bg); font-weight: 600; color: var(--steel); }
+.drawing { background: var(--surface); border: 1px solid var(--rule); padding: 16px; overflow-x: auto; margin: 0; }
+.drawing svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.drawing figcaption { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+ul, ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; max-width: 70ch; }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+footer { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--rule); padding-top: 14px; }
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Hog fence project · hauling</div>
+  <h1>Fence Wagon Build Plan</h1>
+  <p class="lede">Chassis only: a welded steel frame on two 3,500 lb trailer axles, with a turntable front axle and a hinged tongue for a PTO-and-hitch-lift tractor. The deck and side boards come later and bolt on.</p>
+</header>
+
+<section aria-label="Chassis spec at a glance">
+  <div class="spec">
+    <div><b>14 × 6.5 ft</b><span>Frame</span></div>
+    <div><b>~10 ft</b><span>Wheelbase</span></div>
+    <div><b>~60–66 in</b><span>Wheel track</span></div>
+    <div><b>2 × 3,500 lb</b><span>Axles</span></div>
+    <div><b>~31 in</b><span>Frame top height</span></div>
+    <div><b>Turntable</b><span>Front steering</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>How it goes together</h2>
+  <p>The frame is the backbone, so no separate reach pole is needed. The rear axle bolts solid under the rear bolster. The front axle sits on its own lower bolster and swivels under the frame on a turntable around a center kingbolt. The tongue hinges on the front axle so it can rise and fall with the tractor drawbar.</p>
+  <figure class="drawing">
+    <svg viewBox="0 0 780 360" role="img" aria-label="Top view of the chassis: two narrow main rails, cantilevered cross members out to edge rails, front turntable axle with tongue, fixed rear axle">
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--muted)">
+        <!-- tongue A-frame -->
+        <line x1="22" y1="180" x2="170" y2="130" stroke="var(--steel)" stroke-width="5"/>
+        <line x1="22" y1="180" x2="170" y2="230" stroke="var(--steel)" stroke-width="5"/>
+        <line x1="110" y1="150" x2="110" y2="210" stroke="var(--steel)" stroke-width="3"/>
+        <circle cx="22" cy="180" r="8" fill="var(--surface)" stroke="var(--steel)" stroke-width="3"/>
+        <text x="8" y="215">hitch eye</text>
+        <text x="60" y="120">tongue ~6 ft</text>
+        <!-- outline (edge rails + end cross members) -->
+        <rect x="140" y="70" width="600" height="220" fill="none" stroke="var(--fg)" stroke-width="2.5"/>
+        <!-- headboard -->
+        <rect x="140" y="70" width="10" height="220" fill="var(--accent)"/>
+        <text x="136" y="58" fill="var(--accent)">wood headboard (bolts on later)</text>
+        <!-- main rails, narrow, inside tire swing -->
+        <line x1="140" y1="145" x2="740" y2="145" stroke="var(--fg)" stroke-width="5"/>
+        <line x1="140" y1="215" x2="740" y2="215" stroke="var(--fg)" stroke-width="5"/>
+        <text x="600" y="139" fill="var(--fg)">main rails, 36" apart</text>
+        <!-- cross members -->
+        <g stroke="var(--steel)" stroke-width="2">
+          <line x1="215" y1="70" x2="215" y2="290"/><line x1="290" y1="70" x2="290" y2="290"/>
+          <line x1="365" y1="70" x2="365" y2="290"/><line x1="440" y1="70" x2="440" y2="290"/>
+          <line x1="515" y1="70" x2="515" y2="290"/><line x1="590" y1="70" x2="590" y2="290"/>
+          <line x1="665" y1="70" x2="665" y2="290"/>
+        </g>
+        <!-- front axle on turntable -->
+        <rect x="186" y="80" width="18" height="200" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+        <circle cx="195" cy="180" r="34" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 3"/>
+        <circle cx="195" cy="180" r="4" fill="var(--accent)"/>
+        <rect x="178" y="74" width="34" height="14" rx="3" fill="var(--steel)"/>
+        <rect x="178" y="272" width="34" height="14" rx="3" fill="var(--steel)"/>
+        <text x="160" y="318" fill="var(--accent)">front axle + turntable</text>
+        <!-- rear axle fixed -->
+        <rect x="636" y="80" width="18" height="200" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+        <rect x="628" y="74" width="34" height="14" rx="3" fill="var(--steel)"/>
+        <rect x="628" y="272" width="34" height="14" rx="3" fill="var(--steel)"/>
+        <text x="600" y="318" fill="var(--accent)">rear axle, fixed</text>
+        <!-- dims -->
+        <line x1="140" y1="342" x2="740" y2="342" stroke="var(--muted)"/>
+        <line x1="140" y1="336" x2="140" y2="348" stroke="var(--muted)"/><line x1="740" y1="336" x2="740" y2="348" stroke="var(--muted)"/>
+        <text x="420" y="338" fill="var(--fg)">14 ft</text>
+        <line x1="195" y1="30" x2="645" y2="30" stroke="var(--muted)"/>
+        <line x1="195" y1="24" x2="195" y2="36" stroke="var(--muted)"/><line x1="645" y1="24" x2="645" y2="36" stroke="var(--muted)"/>
+        <text x="370" y="24" fill="var(--fg)">wheelbase ~10 ft</text>
+        <line x1="765" y1="70" x2="765" y2="290" stroke="var(--muted)"/>
+        <line x1="759" y1="70" x2="771" y2="70" stroke="var(--muted)"/><line x1="759" y1="290" x2="771" y2="290" stroke="var(--muted)"/>
+        <text x="752" y="200" fill="var(--fg)" transform="rotate(-90 752 200)">6.5 ft</text>
+      </g>
+    </svg>
+    <figcaption>Top view, not to scale. Gray blocks are the tires. The front kingbolt sits about 2 ft back from the front; the rear axle about 2 ft from the rear.</figcaption>
+  </figure>
+
+  <figure class="drawing">
+    <svg viewBox="0 0 700 300" role="img" aria-label="Side view of the front axle stack showing heights from ground to frame top">
+      <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--muted)">
+        <line x1="20" y1="270" x2="680" y2="270" stroke="var(--muted)" stroke-width="2"/>
+        <text x="24" y="290">ground</text>
+        <!-- tire -->
+        <circle cx="180" cy="190" r="80" fill="none" stroke="var(--steel)" stroke-width="10"/>
+        <circle cx="180" cy="190" r="10" fill="var(--steel)"/>
+        <text x="80" y="104">27" tire (15" wheel)</text>
+        <!-- stack drawn to right as a column -->
+        <rect x="380" y="180" width="120" height="14" fill="var(--steel)"/><text x="512" y="192">axle tube + pads → 15"</text>
+        <rect x="380" y="160" width="120" height="20" fill="none" stroke="var(--fg)" stroke-width="2"/><text x="512" y="175">lower bolster 4×4 → 20"</text>
+        <rect x="380" y="152" width="120" height="8" fill="var(--accent)"/><text x="512" y="159" fill="var(--accent)">turntable → 22"</text>
+        <rect x="380" y="122" width="120" height="30" fill="none" stroke="var(--fg)" stroke-width="2"/><text x="512" y="141">upper bolster 4×6 → 28"</text>
+        <rect x="380" y="107" width="120" height="15" fill="var(--fg)"/><text x="512" y="118">main rail 3×2 (on edge) → 31"</text>
+        <rect x="380" y="97" width="120" height="10" fill="none" stroke="var(--steel)" stroke-width="2"/><text x="512" y="105">cross members 2×2 → 33"</text>
+        <line x1="260" y1="110" x2="370" y2="110" stroke="var(--accent)" stroke-dasharray="4 3"/>
+        <text x="228" y="98" fill="var(--accent)">tire top ~27"</text>
+      </g>
+    </svg>
+    <figcaption>Front axle stack, approximate heights to the top of each part. The front tires swing under the cross members, so the cross members must clear the tire tops by 3" or more. The rear bolster uses the same 4×6 plus a 4×4 spacer so the frame sits level.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Cut list</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Part</th><th>Qty</th><th>Length</th><th>Stock</th><th>Notes</th></tr>
+      <tr class="group"><td colspan="5">Frame</td></tr>
+      <tr><td>Main rails</td><td class="num">2</td><td class="num">14 ft</td><td class="mono">3×2×3/16 rect tube, on edge</td><td>36" apart on center, inside the front tire swing</td></tr>
+      <tr><td>Cross members</td><td class="num">9</td><td class="num">6.5 ft</td><td class="mono">2×2×3/16 sq tube</td><td>Every 20", welded on top of the rails; overhang ~21" each side</td></tr>
+      <tr><td>Edge rails</td><td class="num">2</td><td class="num">14 ft</td><td class="mono">2×2×1/8 sq tube</td><td>Welded to the cross member ends</td></tr>
+      <tr><td>Diagonal braces</td><td class="num">2</td><td class="num">~7 ft</td><td class="mono">2×2×1/8 sq tube</td><td>X between the main rails behind the front bolster, stops racking</td></tr>
+      <tr class="group"><td colspan="5">Bolsters and axles</td></tr>
+      <tr><td>Upper front bolster</td><td class="num">1</td><td class="num">60"</td><td class="mono">4×6×1/4 rect tube</td><td>Welded under the main rails; top half of the turntable bolts to it</td></tr>
+      <tr><td>Lower front bolster</td><td class="num">1</td><td class="num">60"</td><td class="mono">4×4×1/4 sq tube</td><td>Front axle U-bolts under it; bottom half of the turntable on top</td></tr>
+      <tr><td>Rear bolster</td><td class="num">1</td><td class="num">60"</td><td class="mono">4×6×1/4 rect tube</td><td>Welded under the main rails ~2 ft from the rear</td></tr>
+      <tr><td>Rear spacer</td><td class="num">1</td><td class="num">60"</td><td class="mono">4×4×1/4 sq tube</td><td>Under the rear bolster so the frame sits level with the front</td></tr>
+      <tr><td>Kingbolt pads</td><td class="num">2</td><td class="num">8"×8"</td><td class="mono">1/2" plate</td><td>Reinforce both bolsters at the kingbolt hole</td></tr>
+      <tr><td>Steering stops</td><td class="num">4</td><td class="num">2"×3"</td><td class="mono">1/2" plate</td><td>Limit the turn to ~35° so tires can't hit the frame</td></tr>
+      <tr class="group"><td colspan="5">Tongue</td></tr>
+      <tr><td>Tongue arms</td><td class="num">2</td><td class="num">~7 ft</td><td class="mono">3×2×3/16 rect tube</td><td>A-frame from the bolster ends to the hitch</td></tr>
+      <tr><td>Tongue cross brace</td><td class="num">1</td><td class="num">~30"</td><td class="mono">2×2×3/16 sq tube</td><td>Midway along the arms</td></tr>
+      <tr><td>Hinge ears</td><td class="num">4</td><td class="num">3"×5"</td><td class="mono">1/2" plate</td><td>2 pairs on the lower front bolster, 1-1/16" holes</td></tr>
+      <tr><td>Hitch eye plate</td><td class="num">1</td><td class="num">6"×12"</td><td class="mono">1/2" plate</td><td>Single tongue plate with a 1-1/16" hole for the drawbar pin</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Shopping list</h2>
+  <p>Steel yards sell tube in 20 ft and 24 ft sticks and pipe in 21 ft sticks. Heavy 4" bolster tube is often sold by the foot as a drop. Buy these and cut per the list above.</p>
+  <h3>Steel</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Stock</th><th>Spec</th><th>Buy</th><th>Cut into</th></tr>
+      <tr><td>Rectangular tube</td><td class="mono">3" × 2" × 3/16" wall</td><td class="num">2 × 24 ft</td><td>Each stick: 1 main rail (14 ft) + 1 tongue arm (7 ft)</td></tr>
+      <tr><td>Square tube</td><td class="mono">2" × 2" × 3/16" wall</td><td class="num">3 × 20 ft</td><td>9 cross members (3 per stick) + tongue brace from an offcut</td></tr>
+      <tr><td>Square tube</td><td class="mono">2" × 2" × 1/8" wall</td><td class="num">2 × 24 ft</td><td>Each stick: 1 edge rail (14 ft) + 1 diagonal (7 ft)</td></tr>
+      <tr><td>Rectangular tube</td><td class="mono">4" × 6" × 1/4" wall</td><td class="num">10 ft</td><td>Upper front bolster + rear bolster (60" each)</td></tr>
+      <tr><td>Square tube</td><td class="mono">4" × 4" × 1/4" wall</td><td class="num">10 ft</td><td>Lower front bolster + rear spacer (60" each)</td></tr>
+      <tr><td>Plate</td><td class="mono">1/2" thick, 12" × 24"</td><td class="num">1</td><td>Kingbolt pads, hinge ears, hitch plate, steering stops</td></tr>
+    </table>
+  </div>
+
+  <h3>Running gear parts</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Item</th><th>Spec</th><th>Qty</th></tr>
+      <tr><td>Trailer axle</td><td>3,500 lb straight axle, idler hubs (no brakes), 5 on 4.5" bolt pattern, ~66" hub face, spring seats</td><td class="num">2</td></tr>
+      <tr><td>Axle U-bolts + tie plates</td><td>1/2" round-bend U-bolts to fit the axle tube (usually 2-3/8" round) over 4" bolster</td><td class="num">8 + 4 plates</td></tr>
+      <tr><td>Wheels</td><td>15" × 6" trailer wheels, 5 on 4.5"</td><td class="num">5 (1 spare)</td></tr>
+      <tr><td>Tires</td><td>ST225/75R15 load range D (~2,540 lb each)</td><td class="num">5</td></tr>
+      <tr><td>Turntable</td><td>Ball-bearing wagon turntable, 24–30" diameter, rated 5,000 lb or more</td><td class="num">1</td></tr>
+      <tr><td>Kingbolt</td><td>1-1/4" × 14" grade 8 bolt, nylock or castle nut with cotter, hardened washers</td><td class="num">1</td></tr>
+      <tr><td>Tongue hinge pins</td><td>1" × 6" grade 8 bolts or clevis pins with keepers</td><td class="num">2</td></tr>
+      <tr><td>Grease zerks</td><td>1/4"-28 straight, for the kingbolt and hinge ears</td><td class="num">4</td></tr>
+    </table>
+  </div>
+
+  <h3>Hardware and safety</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Item</th><th>Spec</th><th>Qty</th></tr>
+      <tr><td>Weld-on D-rings with clips</td><td>1/2" ring, ~4,000 lb working load</td><td class="num">8</td></tr>
+      <tr><td>Hitch pin</td><td>1" with lock clip</td><td class="num">1</td></tr>
+      <tr><td>Safety chains</td><td>3/8" grade 70, 5 ft, clevis hooks</td><td class="num">2</td></tr>
+      <tr><td>SMV triangle + reflectors</td><td>Red and amber</td><td class="num">1 + 4</td></tr>
+      <tr><td>Paint</td><td>Rust-inhibiting primer + enamel</td><td class="num">1 gal each</td></tr>
+      <tr><td>Shop consumables</td><td>7018 rod or ER70S-6 wire, cut-off wheels, flap discs</td><td>as needed</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Build order</h2>
+  <ol>
+    <li>Set the two main rails on stands, 36" apart on center, and square them by measuring the diagonals.</li>
+    <li>Weld the upper front bolster under the rails 2 ft from the front, and the rear bolster plus spacer 2 ft from the rear. Check for a ~10 ft wheelbase.</li>
+    <li>Weld the 9 cross members on top of the rails, then the edge rails to their ends. Add the X braces between the main rails.</li>
+    <li>Weld the kingbolt pad to the upper bolster and drill the 1-1/4" kingbolt hole on the frame centerline.</li>
+    <li>Build the front axle assembly: kingbolt pad and hinge ears on the lower bolster, U-bolt the axle under it, bolt the turntable on top.</li>
+    <li>Raise the frame, set it on the turntable, and drop in the kingbolt with a grease zerk.</li>
+    <li>U-bolt the rear axle under the rear spacer, centered and square to the frame.</li>
+    <li>Build the tongue A-frame and hitch plate; pin it to the hinge ears. Weld the steering stops at ~35°.</li>
+    <li>Weld the D-rings along the edge rails.</li>
+    <li>Mount the wheels and tires, grease everything, prime and paint.</li>
+    <li>Test empty: full-lock turns both ways to check tire clearance, then a light load. Retighten the U-bolts and kingbolt after the first few trips.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Loads</h2>
+  <div class="callout">
+    <p><b>Rated:</b> two 3,500 lb axles carry 7,000 lb gross. Design for about 5,000 lb of cargo plus the ~1,000 lb chassis.</p>
+    <p><b>Without brakes:</b> keep the loaded wagon lighter than the tractor pulling it. Gear down before slopes.</p>
+    <p><b>Public roads:</b> Texas generally wants brakes over 4,500 lb gross. Keep it on the farm or check the rules first.</p>
+  </div>
+  <p class="note">Upgrade path: if you later find a junk running gear with automotive steering, its front axle can replace the turntable assembly. Bolt its bolster to the same upper bolster.</p>
+</section>
+
+<footer>Sizes are planning estimates for a slow, on-farm wagon. Have a welder check the steel sizes and welds before loading it heavy, and confirm tire clearance with the real axles before welding the cross members.</footer>
+</main>
