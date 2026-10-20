@@ -18,15 +18,17 @@ Monitor the entire property from one hub:
 
 ### 1. Front gate alert (current)
 
-One sensor node at the front gate, one hub at the top of the tower, 207 m apart.
+A Meshtastic mesh with one sensor node at the front gate and a gateway at the top of the tower, 207 m apart.
 
-- **Gate node:** Raspberry Pi Pico with an SX1262 915 MHz LoRa radio, an AM312 PIR aimed along the approach, a magnetometer beside the drive for vehicles, and optionally the gate-open signal. Mounted on a wood post away from the metal gate, powered from the gate's solar system.
-- **Tower hub:** Pico W with a matching LoRa radio. It ACKs and de-duplicates packets, logs each event and pushes an alert to a phone (ntfy or Pushover) over the house WiFi.
-- **Outcome:** a phone alert when a vehicle drives through or a person or animal is at the gate, plus heartbeats so a dead node shows up as a fault.
+- **Gate node:** a Pico H with a Waveshare SX1262 LoRa board running Meshtastic. Its Detection Sensor watches a PIR aimed along the approach. It's mounted on a wood post away from the metal gate and powered from the gate's solar system.
+- **Tower gateway:** two boards in one box. A Meshtastic radio (Pico H + Waveshare, Router role) hears and relays for the mesh. Beside it, a Pico W runs our MicroPython brain: it reads the radio over UART, logs each event, and pushes an alert to a phone (ntfy or Pushover) over the house WiFi.
+- **Handheld:** a Heltec V3 running Meshtastic with the phone app, for range walks and test messages.
+- **Outcome:** a phone alert when a person or animal is at the gate, and an alert when any node goes silent.
+- **Next:** a custom Meshtastic C++ module on the gate for vehicle detection (magnetometer) and the gate-open switch.
 
-### 2. Mesh hub at the tower
+### 2. Mesh grows from the tower
 
-Replace the Pico W hub with a Raspberry Pi and a Meshtastic node in the Router role, with the antenna at the top of the tower. The Pi decodes packets, adds coordinates and timestamps, stores events in SQLite and serves the API and MQTT feed.
+More Meshtastic nodes join the same encrypted channel, and relays are added only where the canopy blocks the signal. Later, a Raspberry Pi at the house takes over from the Pico W brain for heavier work: node coordinates, SQLite, the API and an MQTT feed.
 
 ### 3. Pilot in the woods
 
@@ -45,14 +47,14 @@ An app or workstation dashboard, reachable from anywhere, built on the hub's API
 - Node health: last heard, battery, signal strength, faults.
 - Event history with search by node, time and object type.
 
-It starts as simple phone alerts in subgoal 1 and grows into a full dashboard (Grafana, Node-RED or a Leaflet map) once the Pi hub is running.
+It starts as simple phone alerts in subgoal 1 and grows into a full dashboard (Grafana, Node-RED or a Leaflet map) once the Raspberry Pi joins in subgoal 2.
 
 ## Repository
 
 - `docs/design.md` — design doc: hardware, power, radio configuration, packet format and API
-- `docs/hub-build-guide.md` — step-by-step build of the Pico W tower hub, with explanations
+- `docs/gateway-build-guide.md` — step-by-step build of the tower gateway (Meshtastic radio + Pico W brain), with explanations
 - `docs/components.md` — Phase 1 component design: pins, code, bring-up tests and status for each part
 - `docs/shopping-list.md` — parts for Phase 1 (gate alert)
-- `firmware/` — MicroPython for the Pico W tower hub and the gate node; see [firmware/README.md](firmware/README.md)
-- `tests/` — PC-side tests for the packet format
+- `firmware/` — MicroPython gateway brain for the Pico W. The radios run stock Meshtastic. See [firmware/README.md](firmware/README.md).
+- `tests/` — PC-side tests for the packet format and the Meshtastic serial API
 - `nodes.example.csv` — template for node coordinates. Copy it to `nodes.local.csv` (git-ignored) for real locations.

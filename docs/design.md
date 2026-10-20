@@ -16,36 +16,37 @@ The system reports where movement happens across about 50 acres of woods, using 
 
 A LoRa node reports which sensor saw something, not where the animal stands. Position comes from each node's fixed coordinates and the order in which neighboring nodes fire.
 
-## Phase 1: gate alerts with a Pico W
+## Phase 1: gate alerts on Meshtastic
 
-Phase 1 sends one alert when someone is at the gate or a vehicle drives by, from a single sensor at the gate to a hub on the tower. It does no species identification. The Meshtastic mesh and multi-node tracking below are Phase 2.
+Phase 1 sends one alert when someone is at the gate, using one sensor node at the gate and a gateway on the tower. It does no species identification. It runs on **Meshtastic** from day one, so relaying, encryption and the app come for free, and Phase 2 woods nodes join the same mesh. Build steps are in [gateway-build-guide.md](gateway-build-guide.md).
 
 | Part | Choice | Notes |
 | --- | --- | --- |
-| LoRa radio, both ends | SX1262 915 MHz module on the Pico, such as a Waveshare Pico LoRa HAT or an Ebyte E22-900M22S wired over SPI | RadioLib (C++, Arduino-Pico) and MicroPython both have SX126x drivers. Use the 915 MHz US band. |
-| Hub board | Pico W (already owned) at the top of the tower | Joins the house WiFi, which is about 11 m away, and sends alerts out. |
-| Gate board | A second Pico (plain or W) | WiFi stays off at the gate to save power. |
-| Person or animal | AM312 mini PIR (3.3 V, tens of µA), aimed along the approach | Cannot tell a person from a deer. |
-| Vehicle | QMC5883L magnetometer on I2C, beside the drive | A car shifts the magnetic field, a person barely does. |
-| Gate open | Reed switch, or the gate controller's own open signal through an optocoupler | Do not tap the controller's safety circuits. |
-| Alert path | Hub POSTs to ntfy or Pushover, which pushes to your phone | Also logs every event with a time stamp. |
+| LoRa radios | Waveshare Pico-LoRa-SX1262 (915 MHz) on a Pico H, running stock Meshtastic | One radio per node. Meshtastic's Pico build knows the Waveshare pinout. |
+| Tower radio | Pico H + Waveshare, **Router** role, Serial module in **PROTO** mode on GP4/GP5 | Hears and relays for every node, and forwards packets to the brain over UART |
+| Gateway brain | Pico W (already owned) beside the tower radio, MicroPython (`firmware/gateway`) | Reads the radio's serial API, logs events, joins the house WiFi (about 11 m away), and pushes alerts |
+| Gate node | Pico H + Waveshare, **Client** role | Meshtastic's **Detection Sensor** module watches the PIR on GP16 and sends "Motion detected" |
+| Person or animal | PIR module, aimed along the approach | Can't tell a person from a deer |
+| Vehicle (later) | QMC5883L magnetometer on I2C, beside the drive | Needs a custom Meshtastic C++ module. Not in stock firmware. |
+| Gate open (later) | Reed switch, or the gate controller's own open signal through an optocoupler | Same custom module. Do not tap the controller's safety circuits. |
+| Handheld | Heltec V3 bundle running Meshtastic, paired with the phone app | Range walks and test messages |
+| Alert path | Brain POSTs to ntfy or Pushover, which pushes to your phone | Also logs every event with a timestamp |
+
+**Security:** every node uses one private primary channel ("farm") with a random 256-bit key, replacing Meshtastic's default public key. That way nobody else can read alerts or fake them.
 
 **Logic:**
 
-1. A PIR or magnetometer trigger must repeat within a few seconds before the node sends.
-2. The node sends a short packet: node ID, sequence number, event type, battery.
-3. The hub replies with an ACK. The node retries up to 3 times after a random delay.
-4. The hub drops duplicate sequence numbers, adds the time, logs the event and pushes the alert.
-5. A 60 second cooldown per event type keeps a parked truck from flooding the phone.
-6. The node sends a heartbeat every few hours, so a dead battery shows up as a fault.
-
-A magnetometer hit means vehicle. A PIR hit with no magnetometer change means person or animal at the gate.
+1. **Gate node:** the Detection Sensor sends "Motion detected" when the PIR goes high, at most once per 60 seconds.
+2. **Mesh:** Meshtastic encrypts the message, relays it if needed, and drops duplicates. The tower radio hands it to the brain over UART.
+3. **Brain:** it maps the sensor name to an event ("Motion" → motion), adds the time, logs it, and pushes an alert. A 60-second cooldown per node and event keeps a lingering animal from flooding the phone.
+4. **Health:** Meshtastic nodes report telemetry every 30 minutes. The brain alerts if a watched node is silent for 2 hours, or if the tower radio stops talking over UART.
+5. **Custom events (later):** a custom C++ gate module sends our 8-byte packet (see "Packet format and API") on `PRIVATE_APP`. It carries the vehicle and gate-open logic: a magnetometer hit means a vehicle, and a PIR hit with no magnetometer change means a person or animal. Relays and the tower radio forward it without decoding it, and only the brain reads it.
 
 **Gate mounting:** the gate is metal and detunes antennas, so put the node, PIR and antenna on a wood or PVC post 3 ft or more from the gate, with the antenna 6 to 8 ft up. Wood is the better choice. If the gate-open signal is a reed switch, put the switch on the post and the magnet on the gate.
 
-**Gate power:** tap the gate's solar system through a 12 V to 5 V buck converter, or use a 2 W panel and one 18650 cell with a charge board. A Pico draws about a milliamp or more even when quiet, and tens of mA with WiFi on. The gate has sun, so this works, but the shaded Phase 2 nodes will need a lower-power board.
+**Gate power:** tap the gate's solar system through a 12 V to 5 V buck converter, or use a 2 W panel and one 18650 cell with a charge board. A Pico running Meshtastic draws tens of mA, since the RP2040 build doesn't deep-sleep. The gate has sun, so this works, but the shaded Phase 2 nodes will need a lower-power board.
 
-**Range:** the gate is 207 m from the tower. Trees there reach about 50 ft, the same height as the tower, so expect a solid link. Check RSSI and SNR at the hub before locking the mounting.
+**Range:** the gate is 207 m from the tower. Trees there reach about 50 ft, the same height as the tower, so expect a solid link. Run a traceroute from the handheld at the gate spot, and check its SNR before locking the mounting.
 
 ## Architecture
 
@@ -233,7 +234,7 @@ Start with a pilot of 5 or 6 nodes before buying 30. A starter system with 20 de
 
 - [x] Tree height near the gate: up to 50 ft, with sun for solar.
 - [x] Gate: solar-powered metal gate. Antenna and electronics go on a wood post.
-- [x] Tower WiFi: serves another property and is hardwired to the house, so the Pico W hub can join the house network.
+- [x] Tower WiFi: serves another property and is hardwired to the house, so the Pico W gateway brain can join the house network.
 - [x] Priority: track everything cheaply, starting with a gate and vehicle alert.
 - [ ] Tower power: mains, PoE splitter or solar for the hub?
 - [ ] Does the gate controller expose a dry-contact or limit-switch signal for gate open?
