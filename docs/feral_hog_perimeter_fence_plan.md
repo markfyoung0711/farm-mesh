@@ -98,7 +98,7 @@ The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remo
 | Post hole auger, 12" bit (3-pt) | 3: 8" wood brace and gate posts, 36" deep | PTO | ✅ | About 32 holes (corners, inline braces, gates) |
 | Post driver (T-posts) | 3: ~367 T-posts | Hydraulic | ⚠️ | Needs a **PTO hydraulic pump**, a gas-powered driver, or a manual driver (slow) |
 | Wire dispenser / unroller (3-pt) | 4: lay out 23 rolls | Hitch lift | ✅ | |
-| Stretcher bar + chains | 4: stretch 330-ft runs | Drawbar | ✅ | Plus a come-along or ratchet stretcher for fine tension |
+| Stretcher bar + chains | 4: stretch 330-ft runs | Drawbar | ✅ | Bar + chains: build or borrow. Come-along for fine tension: **Owned** |
 | Concrete mixer (3-pt) | Braces, gate sills, low-spot footers | PTO | ✅ | Or bagged concrete for small pours |
 | Trailer (running gear with fenced sides and floor) | Posts, rolls, scrap wire, logs | Drawbar | ✅ | To get: borrow, buy or build ([wagon plan](running-gear-wagon-plan.md)) |
 | Hand tools | All phases | — | ✅ | Fencing pliers, Gripple tensioning tool, T-post clip tool, tamping bar, earth-anchor bar, gloves and safety glasses |
