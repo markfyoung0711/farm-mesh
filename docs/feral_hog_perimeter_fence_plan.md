@@ -101,7 +101,7 @@ The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remo
 | Stretcher bar + chains | 4: stretch 330-ft runs | Drawbar | ✅ | Bar + chains: build or borrow. Come-along for fine tension: **Owned** |
 | Concrete mixer (3-pt) | Braces, gate sills, low-spot footers | PTO | ✅ | Or bagged concrete for small pours |
 | Trailer (running gear with fenced sides and floor) | Posts, rolls, scrap wire, logs | Drawbar | ✅ | To get: borrow, buy or build ([wagon plan](running-gear-wagon-plan.md)) |
-| Hand tools | All phases | — | ✅ | Fencing pliers, Gripple tensioning tool, T-post clip tool, tamping bar, earth-anchor bar, gloves and safety glasses |
+| Hand tools | All phases | — | ✅ | Fencing pliers (**Owned**), Gripple tensioning tool, T-post clip tool, tamping bar, earth-anchor bar, gloves and safety glasses |
 
 ---
 *Disclaimer: Local wildlife regulations, soil compaction, and seasonal water flow variations may require adjusting structural depth and anchoring weights.*
