@@ -84,5 +84,25 @@ Scaled from the original 5,940 ft estimate by the measured length (×1.23).
 1. **Solar Electric Offset:** Run a smooth 12.5-gauge high-tensile wire 6 inches off the ground and 6 inches outward from the fence mesh using T-post extension insulators. Power it with a 2-to-3-Joule solar energizer to deter snout-digging.
 2. **Integrated Mesh Apron:** Opt for fixed-knot rolls featuring an extra 12-to-18-inch ground skirt that pins flat on the dirt facing outward.
 
+## 6. Implements & Tools to Borrow
+The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remotes). ✅ = runs on it as-is; ⚠️ = needs a workaround.
+
+| Implement | Phase / Use | Power | Fits? | Notes for borrowing |
+| --- | --- | --- | --- | --- |
+| Wire winder (3-pt) + spare reels | 1: wind up ~5.5 mi of old barbed wire | PTO | ✅ | Must have a **slip clutch**; borrow or buy ~20 reels |
+| Heavy log chain with grab hooks | 1: pull old posts | Hitch lift | ✅ | Likely already on hand |
+| Post puller, jaw type (3-pt) | 1: pull old posts faster | Hitch lift | ✅ | Optional; chain works |
+| Rotary cutter (brush hog) | 2: mow the 10-ft corridor | PTO | ✅ | Check the width suits your hp |
+| Chainsaw(s) | 2: trees on the line | — | ✅ | |
+| Box blade or rear blade | 2: grade the corridor to bare dirt, fill dips | Hitch lift | ✅ | |
+| Forestry mulcher or skid steer with grapple | 2: heavy brush | Own hydraulics | ⚠️ | Rent or borrow with an operator if the brush is too heavy for the cutter |
+| Post hole auger, 12" bit (3-pt) | 3: 8" wood brace and gate posts, 36" deep | PTO | ✅ | About 32 holes (corners, inline braces, gates) |
+| Post driver (T-posts) | 3: ~367 T-posts | Hydraulic | ⚠️ | Needs a **PTO hydraulic pump**, a gas-powered driver, or a manual driver (slow) |
+| Wire dispenser / unroller (3-pt) | 4: lay out 23 rolls | Hitch lift | ✅ | |
+| Stretcher bar + chains | 4: stretch 330-ft runs | Drawbar | ✅ | Plus a come-along or ratchet stretcher for fine tension |
+| Concrete mixer (3-pt) | Braces, gate sills, low-spot footers | PTO | ✅ | Or bagged concrete for small pours |
+| Trailer | Posts, rolls, scrap wire | — | ✅ | |
+| Hand tools | All phases | — | ✅ | Fencing pliers, Gripple tensioning tool, T-post clip tool, tamping bar, earth-anchor bar, gloves and safety glasses |
+
 ---
 *Disclaimer: Local wildlife regulations, soil compaction, and seasonal water flow variations may require adjusting structural depth and anchoring weights.*
