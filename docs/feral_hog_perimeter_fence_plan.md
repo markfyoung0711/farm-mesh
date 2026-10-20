@@ -1,15 +1,32 @@
 # Comprehensive Feral Hog Perimeter Fence Plan
-**Project Scale:** 50-Acre Perimeter (Approx. 5,940 Linear Feet / 1.1 Miles)
+**Project Scale:** ~74-Acre Perimeter (7,332 Linear Feet / 1.39 Miles, measured from surveyed corner points)
 **System Type:** High-Tensile Fixed-Knot Woven Wire Fence with Tractor-Assisted Installation
 
 ---
 
 ## 1. Project Overview & Cost Summary
-Building a secure perimeter over 50 acres requires a high-tensile system that resists intense rooting and animal impact without sagging over time. This plan leverages a tractor with a 3-point hitch to mechanize clearing, demolition, and tensioning.
+Building a secure perimeter over 74 acres requires a high-tensile system that resists intense rooting and animal impact without sagging over time. This plan leverages a tractor with a 3-point hitch to mechanize clearing, demolition, and tensioning.
+
+### Measured Perimeter
+| Side | Length |
+| --- | --- |
+| North (NW → NE) | 1,482 ft |
+| East (NE → SE) | 2,255 ft |
+| South (SE → SW) | 1,442 ft |
+| West (SW → NW) | 2,153 ft |
+| **Total** | **7,332 ft (1.39 mi)** |
+
+Corner coordinates are kept out of this public repo (in the git-ignored `perimeter.local.csv`).
 
 ### Estimated Cost Matrix
-* **DIY Material Cost:** $10,500 – $15,200 (Assumes square perimeter, standard terrain)
-* **Contractor Rate (Turnkey):** $39,100 – $61,900+ (Includes commercial clearing and demolition labor)
+Scaled from the original 5,940 ft estimate by the measured length (×1.23).
+* **DIY Material Cost:** $13,000 – $18,800 (Standard terrain)
+* **Contractor Rate (Turnkey):** $48,300 – $76,400+ (Includes commercial clearing and demolition labor)
+
+### Material Quantities
+* **Fence fabric:** 23 × 330-ft rolls (7,332 ft), plus spare for gates, dips and waste
+* **T-posts:** ~367 at 20-ft spacing
+* **H-braces:** 4 corners + 4 inline (one per side, each side exceeds 1,320 ft) + 2 per truck gate
 
 ---
 
@@ -31,7 +48,7 @@ Building a secure perimeter over 50 acres requires a high-tensile system that re
 * **Post Extraction:** Wrap a heavy log chain around the base of the old wood/steel posts. Attach to the tractor's 3-point drawbar and lift straight up using the rear hydraulics to salvage posts cleanly.
 
 ### Phase 2: Corridor Clearing
-* **Width:** Clear a minimum **10-foot wide corridor** down to bare dirt around the entire 1.1-mile line.
+* **Width:** Clear a minimum **10-foot wide corridor** down to bare dirt around the entire 1.39-mile line.
 * **Debris Management:** Stack or mulch cleared trees and brush at least 15 feet *inside* the property line. Do not stack debris on the outside, as it creates an accidental ramp for hogs to climb over the fence.
 
 ### Phase 3: Structural Framing & Layout
