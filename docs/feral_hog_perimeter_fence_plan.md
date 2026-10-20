@@ -94,7 +94,7 @@ The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remo
 | Post puller, jaw type (3-pt) | 1: pull old posts faster | Hitch lift | ✅ | Optional; chain works |
 | Rotary cutter (brush hog) | 2: mow the 10-ft corridor | PTO | ✅ | **Owned** |
 | Chainsaw | 2: fell trees inward, buck logs, cut stumps flush | — | ✅ | **Owned** |
-| Box blade or rear blade | 2: grade the corridor to bare dirt, fill dips | Hitch lift | ✅ | |
+| Box blade or rear blade | 2: grade the corridor to bare dirt, fill dips | Hitch lift | ✅ |**Owned** |
 | Forestry mulcher or skid steer with grapple | 2: heavy brush | Own hydraulics | ⚠️ | Rent or borrow with an operator if the brush is too heavy for the cutter |
 | Post hole auger, 12" bit (3-pt) | 3: 8" wood brace and gate posts, 36" deep | PTO | ✅ | About 32 holes (corners, inline braces, gates) |
 | Post driver (T-posts) | 3: ~367 T-posts | Hydraulic | ⚠️ | Needs a **PTO hydraulic pump**, a gas-powered driver, or a manual driver (slow) |
