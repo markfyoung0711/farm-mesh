@@ -101,7 +101,7 @@ The tractor has **rear PTO and 3-point hitch lift only** (no rear hydraulic remo
 | Wire dispenser / unroller (3-pt) | 4: lay out 23 rolls | Hitch lift | ✅ | |
 | Stretcher bar + chains | 4: stretch 330-ft runs | Drawbar | ✅ | Plus a come-along or ratchet stretcher for fine tension |
 | Concrete mixer (3-pt) | Braces, gate sills, low-spot footers | PTO | ✅ | Or bagged concrete for small pours |
-| Trailer (running gear with fenced sides and floor) | Posts, rolls, scrap wire, logs | Drawbar | ✅ | To get: borrow or buy |
+| Trailer (running gear with fenced sides and floor) | Posts, rolls, scrap wire, logs | Drawbar | ✅ | To get: borrow, buy or build ([wagon plan](running-gear-wagon-plan.md)) |
 | Hand tools | All phases | — | ✅ | Fencing pliers, Gripple tensioning tool, T-post clip tool, tamping bar, earth-anchor bar, gloves and safety glasses |
 
 ---
